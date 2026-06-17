@@ -13,7 +13,7 @@ public class DiscountCalculatorTests
     }
 
     [Theory]
-    [InlineData(-2, true, 30)]    // VIP over $100 -> 20% discount (150 * 0.20 = 30)
+    [InlineData(150, true, 30)]    // VIP over $100 -> 20% discount (150 * 0.20 = 30)
     [InlineData(50, true, 5)]      // VIP under $100 -> 10% discount (50 * 0.10 = 5)
     [InlineData(150, false, 7.5)]  // Normal over $100 -> 5% discount (150 * 0.05 = 7.5)
     [InlineData(50, false, 0)]     // Normal under $100 -> 0% discount
