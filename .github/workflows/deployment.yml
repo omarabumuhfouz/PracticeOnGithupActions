@@ -1,0 +1,54 @@
+name: Deploy Project
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Step 1 : Download Code into the runner
+      - name: Get Code
+        uses: actions/checkout@v6
+
+      # Install the .NEt 9 SDK on the runner
+      -  name: Setup .NET 9
+         uses: actions/setup-dotnet@v5
+         with:
+           dotnet-version: '9.0.x'
+
+      # Download all NuGet dependencies
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      # Run Tests
+      - name: Run Tests
+        run: dotnet test --no-restore --verbosity normal
+  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    # Step 1 : Download Code into the runner
+    - name: Get Code
+      uses: actions/checkout@v6
+
+    # Step 2 Install .net
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '9.0.x'
+
+    # Step 3 Download All NuGet Dependencies
+    - name: Restore Dependencies
+      run: dotnet restore
+
+    # Step 4 Build Project
+    - name: Build Project
+      run: dotnet build
+
+    - name: Deploy Project
+      run: echo "Deployee Project Successfully!"
+    
+
+  
+
+       
